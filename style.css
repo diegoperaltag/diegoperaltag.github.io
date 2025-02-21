@@ -48,15 +48,13 @@ main {
     margin: 20px auto;
 }
 
-section {
+.content-section {
     display: none; /* Hide sections by default */
     margin-bottom: 40px;
-    text-align: left; /* Align all section text to the left */
+    text-align: left; /* Align text fully to the left */
+    padding-left: 0; /* Remove any unintended indentation */
 }
 
 #about {
     display: block; /* Show 'About' by default */
 }
-
-
-
