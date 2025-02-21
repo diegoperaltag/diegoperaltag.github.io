@@ -2,7 +2,6 @@ body {
     font-family: 'Times New Roman', serif;
     margin: 0;
     padding: 0;
-    text-align: center;
     background-color: white;
     color: black;
 }
@@ -10,12 +9,16 @@ body {
 header {
     background-color: white;
     padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .site-title {
     font-size: 18px;
-    margin: 5px 0;
-    font-weight: normal; /* Remove bold text */
+    margin: 5px 20px;
+    font-weight: normal;
+    text-align: left; /* Align name to the left */
 }
 
 .nav-menu {
@@ -23,8 +26,7 @@ header {
     padding: 0;
     margin: 5px 0;
     display: flex;
-    justify-content: center;
-    background: none; /* Remove gray background */
+    justify-content: flex-end;
 }
 
 .nav-menu li {
@@ -35,8 +37,9 @@ header {
     text-decoration: none;
     color: black;
     font-size: 14px;
-    font-weight: normal; /* Remove bold text */
+    font-weight: normal;
 }
 
-
-
+section {
+    padding: 20px;
+}
