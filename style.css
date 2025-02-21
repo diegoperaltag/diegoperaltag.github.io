@@ -44,7 +44,6 @@ header {
 
 main {
     padding: 20px;
-    text-align: left;
     max-width: 800px;
     margin: 20px auto;
 }
@@ -52,14 +51,12 @@ main {
 section {
     display: none; /* Hide sections by default */
     margin-bottom: 40px;
+    text-align: left; /* Align all section text to the left */
 }
 
 #about {
     display: block; /* Show 'About' by default */
 }
 
-.align-right {
-    text-align: right; /* Align text in About section to the right */
-}
 
 
