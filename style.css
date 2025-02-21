@@ -39,6 +39,7 @@ header {
     color: black;
     font-size: 14px;
     font-weight: normal;
+    cursor: pointer;
 }
 
 main {
@@ -49,6 +50,16 @@ main {
 }
 
 section {
+    display: none; /* Hide sections by default */
     margin-bottom: 40px;
 }
+
+#about {
+    display: block; /* Show 'About' by default */
+}
+
+.align-right {
+    text-align: right; /* Align text in About section to the right */
+}
+
 

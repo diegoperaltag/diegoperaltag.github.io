@@ -5,24 +5,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Diego Peralta-Gonzales</title>
     <link rel="stylesheet" href="style.css">
+    <script>
+        function showSection(sectionId) {
+            document.querySelectorAll('section').forEach(section => {
+                section.style.display = 'none';
+            });
+            document.getElementById(sectionId).style.display = 'block';
+        }
+        
+        window.onload = function() {
+            showSection('about');
+        }
+    </script>
 </head>
 <body>
     <header>
         <h1 class="site-title">Diego Peralta-Gonzales</h1>
         <nav>
             <ul class="nav-menu">
-                <li><a href="#about">About</a></li>
-                <li><a href="#music">Music</a></li>
-                <li><a href="#programming">Programming</a></li>
+                <li><a href="#about" onclick="showSection('about')">About</a></li>
+                <li><a href="#music" onclick="showSection('music')">Music</a></li>
+                <li><a href="#programming" onclick="showSection('programming')">Programming</a></li>
             </ul>
         </nav>
     </header>
     <main>
         <section id="about">
             <h2>About Me</h2>
-            <p>Welcome to my website. This is the default section.</p>
+            <p class="align-right">Welcome to my website. This is the default section.</p>
+        </section>
+        <section id="music">
+            <h2>Music</h2>
+            <p>Content about music goes here.</p>
+        </section>
+        <section id="programming">
+            <h2>Programming</h2>
+            <p>Content about programming goes here.</p>
         </section>
     </main>
 </body>
 </html>
+
 
