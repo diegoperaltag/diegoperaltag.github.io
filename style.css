@@ -43,7 +43,7 @@ header {
 }
 
 main {
-    padding: 20px;
+    padding: 0;
     max-width: 800px;
     margin: 20px auto;
 }
@@ -51,8 +51,10 @@ main {
 .content-section {
     display: none; /* Hide sections by default */
     margin-bottom: 40px;
-    text-align: left; /* Align text fully to the left */
-    padding-left: 0; /* Remove any unintended indentation */
+    text-align: left; /* Ensure text is left-aligned */
+    padding: 0; /* Remove any padding that could cause indentation */
+    margin-left: 0; /* Ensure text starts from the left edge */
+    width: 100%; /* Make sure it spans full width */
 }
 
 #about {
