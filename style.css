@@ -9,7 +9,7 @@ body {
     font-family: 'Times New Roman', serif;
     background-color: white;
     color: black;
-    text-align: center; /* centers only the header block */
+    text-align: center; /* only centers header block */
 }
 
 /* Header layout */
@@ -24,7 +24,7 @@ header {
 .site-title {
     font-size: 24px;
     font-weight: normal;
-    display: inline-block; /* allows the link around it */
+    display: inline-block; /* allows link styling */
 }
 
 .subtitle {
@@ -76,7 +76,8 @@ hr {
 
 /* Default image (shown only on homepage) */
 #default-image img {
-    max-width: 100%;
+    /* Match image width to the divider line width */
+    max-width: 80%;
     height: auto;
     display: block;
     margin: 20px auto;
@@ -93,6 +94,5 @@ main {
 .content-section {
     display: none;
     margin-bottom: 40px;
-    margin: 10px auto;
     text-align: left;
 }
