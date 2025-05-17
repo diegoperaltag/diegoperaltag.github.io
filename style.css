@@ -72,3 +72,12 @@ main {
     margin-bottom: 40px;
     text-align: left;
 }
+
+/* Remove underline and blue color from the name link */
+#home-link,
+#home-link:visited,
+#home-link:hover,
+#home-link:active {
+  text-decoration: none;
+  color: inherit;  /* will inherit your black header text color */
+}
