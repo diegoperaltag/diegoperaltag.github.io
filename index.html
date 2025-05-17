@@ -5,34 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Diego Peralta-Gonzales</title>
     <link rel="stylesheet" href="style.css">
-    <script>
-        function showSection(sectionId) {
-            document.querySelectorAll('section').forEach(section => {
-                section.style.display = 'none';
-            });
-            document.getElementById(sectionId).style.display = 'block';
-        }
-        
-        window.onload = function() {
-            showSection('about');
-        }
-    </script>
 </head>
 <body>
     <header>
-        <h1 class="site-title">Diego Peralta-Gonzales</h1>
-        <nav>
-            <ul class="nav-menu">
-                <li><a href="#about" onclick="showSection('about')">About</a></li>
-                <li><a href="#music" onclick="showSection('music')">Music</a></li>
-                <li><a href="#programming" onclick="showSection('programming')">Programming</a></li>
+        <div class="center-title">
+            <h1 class="site-title">Diego Peralta-Gonzales</h1>
+            <p class="subtitle">composer, multimedia artist</p>
+        </div>
+        <hr>
+        <nav class="main-nav">
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#music">Music</a></li>
+                <li><a href="#programming">Programming</a></li>
             </ul>
         </nav>
     </header>
     <main>
         <section id="about" class="content-section">
             <h2>About Me</h2>
-            <p>Welcome to my website. This is the default section.</p>
+            <p>Welcome to my website. Learn more about me here.</p>
         </section>
         <section id="music" class="content-section">
             <h2>Music</h2>
