@@ -38,7 +38,6 @@ header {
     text-decoration: none;
     color: inherit;
 }
-
 #home-link:hover,
 #home-link:active,
 #home-link:visited {
@@ -74,9 +73,16 @@ hr {
     cursor: pointer;
 }
 
-/* Default image (shown only on homepage) */
+/* Default homepage image */
 #default-image img {
-    /* Match image width to the divider line width */
+    max-width: 80%;
+    height: auto;
+    display: block;
+    margin: 20px auto;
+}
+
+/* About-section image (matches divider margins) */
+.about-image {
     max-width: 80%;
     height: auto;
     display: block;
@@ -96,10 +102,3 @@ main {
     margin-bottom: 40px;
     text-align: left;
 }
-
-.about-image {
-    max-width: 80%;
-    height: auto;
-    display: block;
-    margin: 20px auto;
-  }
