@@ -1,39 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Diego Peralta-Gonzales</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Diego Peralta-Gonzales</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>
-        <div class="center-title">
-            <h1 class="site-title">Diego Peralta-Gonzales</h1>
-            <p class="subtitle">composer, multimedia artist</p>
-        </div>
-        <hr>
-        <nav class="main-nav">
-            <ul class="nav-links">
-                <li><a href="#about">About</a></li>
-                <li><a href="#music">Music</a></li>
-                <li><a href="#programming">Programming</a></li>
-            </ul>
-        </nav>
-    </header>
-    <main>
-        <section id="about" class="content-section">
-            <h2>About Me</h2>
-            <p>Welcome to my website. Learn more about me here.</p>
-        </section>
-        <section id="music" class="content-section">
-            <h2>Music</h2>
-            <p>Content about music goes here.</p>
-        </section>
-        <section id="programming" class="content-section">
-            <h2>Programming</h2>
-            <p>Content about programming goes here.</p>
-        </section>
-    </main>
+  <header>
+    <div class="center-title">
+      <h1 class="site-title">Diego Peralta-Gonzales</h1>
+      <p class="subtitle">composer, multimedia artist</p>
+    </div>
+    <hr>
+    <nav class="main-nav">
+      <ul class="nav-links">
+        <li><a href="#" data-section="about">About</a></li>
+        <li><a href="#" data-section="music">Music</a></li>
+        <li><a href="#" data-section="programming">Programming</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main>
+    <section id="about" class="content-section">
+      <h2>About Me</h2>
+      <p>Welcome to my website. Learn more about me here.</p>
+    </section>
+    <section id="music" class="content-section">
+      <h2>Music</h2>
+      <p>Content about music goes here.</p>
+    </section>
+    <section id="programming" class="content-section">
+      <h2>Programming</h2>
+      <p>Content about programming goes here.</p>
+    </section>
+  </main>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Hide all sections by default
+      document.querySelectorAll('.content-section').forEach(function(sec) {
+        sec.style.display = 'none';
+      });
+      // Set up navigation click handlers
+      document.querySelectorAll('.nav-links a').forEach(function(link) {
+        link.addEventListener('click', function(e) {
+          e.preventDefault();
+          var id = this.getAttribute('data-section');
+          document.querySelectorAll('.content-section').forEach(function(sec) {
+            sec.style.display = 'none';
+          });
+          document.getElementById(id).style.display = 'block';
+          document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+        });
+      });
+    });
+  </script>
 </body>
 </html>
