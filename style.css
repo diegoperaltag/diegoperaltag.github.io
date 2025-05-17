@@ -1,4 +1,4 @@
-/* Reset margins/padding */
+/* Reset default margins and padding */
 html, body, h1, h2, p, ul {
     margin: 0;
     padding: 0;
@@ -9,7 +9,7 @@ body {
     font-family: 'Times New Roman', serif;
     background-color: white;
     color: black;
-    text-align: center; /* only centers header block */
+    text-align: center; /* centers only the header block */
 }
 
 /* Header layout */
@@ -24,7 +24,7 @@ header {
 .site-title {
     font-size: 24px;
     font-weight: normal;
-    display: inline-block; /* to allow link styling */
+    display: inline-block; /* allows the link around it */
 }
 
 .subtitle {
@@ -33,13 +33,12 @@ header {
     margin-bottom: 10px;
 }
 
-/* Remove default link styling from your name */
+/* Remove link styling from the site title (home link) */
 #home-link {
     text-decoration: none;
     color: inherit;
 }
 
-/* Ensure no underline or color change on hover/visited */
 #home-link:hover,
 #home-link:active,
 #home-link:visited {
@@ -55,7 +54,7 @@ hr {
     width: 80%;
 }
 
-/* Navigation links */
+/* Main navigation */
 .main-nav {
     margin-top: 10px;
 }
@@ -75,14 +74,24 @@ hr {
     cursor: pointer;
 }
 
+/* Default image (shown only on homepage) */
+#default-image img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 20px auto;
+}
+
 /* Content area */
 main {
     max-width: 800px;
     margin: 20px auto;
-    text-align: left; /* section text flush left */
+    text-align: left; /* left-aligns all section text */
 }
 
+/* Sections hidden by default */
 .content-section {
-    display: none; /* hidden until link click */
+    display: none;
     margin-bottom: 40px;
+    text-align: left;
 }
