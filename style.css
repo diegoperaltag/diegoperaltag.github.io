@@ -96,3 +96,10 @@ main {
     margin-bottom: 40px;
     text-align: left;
 }
+
+.about-image {
+    max-width: 80%;
+    height: auto;
+    display: block;
+    margin: 20px auto;
+  }
