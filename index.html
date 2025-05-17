@@ -9,7 +9,9 @@
 <body>
   <header>
     <div class="center-title">
-      <h1 class="site-title">Diego Peralta-Gonzales</h1>
+      <a href="#" id="home-link">
+        <h1 class="site-title">Diego Peralta-Gonzales</h1>
+      </a>
       <p class="subtitle">composer, multimedia artist</p>
     </div>
     <hr>
@@ -37,21 +39,31 @@
   </main>
   <script>
     document.addEventListener('DOMContentLoaded', function() {
-      // Hide all sections by default
-      document.querySelectorAll('.content-section').forEach(function(sec) {
-        sec.style.display = 'none';
-      });
-      // Set up navigation click handlers
+      // Function to hide all sections
+      function hideAll() {
+        document.querySelectorAll('.content-section').forEach(function(sec) {
+          sec.style.display = 'none';
+        });
+      }
+
+      // Initially hide all sections
+      hideAll();
+
+      // Nav link handlers
       document.querySelectorAll('.nav-links a').forEach(function(link) {
         link.addEventListener('click', function(e) {
           e.preventDefault();
+          hideAll();
           var id = this.getAttribute('data-section');
-          document.querySelectorAll('.content-section').forEach(function(sec) {
-            sec.style.display = 'none';
-          });
           document.getElementById(id).style.display = 'block';
-          document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+          document.getElementById(id).scrollIntoView({behavior: 'smooth'});
         });
+      });
+
+      // Home link handler: hide all sections
+      document.getElementById('home-link').addEventListener('click', function(e) {
+        e.preventDefault();
+        hideAll();
       });
     });
   </script>
