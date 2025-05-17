@@ -1,14 +1,19 @@
-body {
-    font-family: 'Times New Roman', serif;
+/* Reset any default indents/margins */
+html, body, h1, h2, p, ul {
     margin: 0;
     padding: 0;
-    background-color: white;
-    color: black;
 }
 
-header {
+/* Base typography */
+body {
+    font-family: 'Times New Roman', serif;
     background-color: white;
-    text-align: center;
+    color: black;
+    text-align: center; /* only affects header elements */
+}
+
+/* Header block */
+header {
     padding: 20px 0;
 }
 
@@ -19,16 +24,16 @@ header {
 .site-title {
     font-size: 24px;
     font-weight: normal;
-    margin: 0;
+    line-height: 1.2;
 }
 
 .subtitle {
     font-size: 16px;
     font-weight: normal;
     margin-top: 5px;
-    margin-bottom: 10px;
 }
 
+/* Divider line */
 hr {
     border: none;
     border-top: 1px solid black;
@@ -36,14 +41,13 @@ hr {
     width: 80%;
 }
 
+/* Main navigation */
 .main-nav {
     margin-top: 10px;
 }
 
 .nav-links {
     list-style: none;
-    padding: 0;
-    margin: 0;
     display: flex;
     justify-content: center;
     gap: 40px;
@@ -53,15 +57,23 @@ hr {
     text-decoration: none;
     color: black;
     font-size: 18px;
+    font-weight: normal;
 }
 
+/* Content sections */
 main {
-    padding: 20px;
     max-width: 800px;
     margin: 20px auto;
+    text-align: left; /* ensures section text is left-aligned */
 }
 
 .content-section {
     margin-bottom: 40px;
-    text-align: left;
+}
+
+/* Force all headings and paragraphs flush left */
+.content-section h2,
+.content-section p {
+    margin-left: 0;
+    padding-left: 0;
 }
