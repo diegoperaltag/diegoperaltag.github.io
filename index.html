@@ -12,7 +12,7 @@
       <a href="#" id="home-link">
         <h1 class="site-title">Diego Peralta-Gonzales</h1>
       </a>
-      <p class="subtitle">Peruvian composer & multimedia artist</p>
+      <p class="subtitle">composer, multimedia artist</p>
     </div>
     <hr>
     <nav class="main-nav">
@@ -23,6 +23,10 @@
       </ul>
     </nav>
   </header>
+  <!-- Default page image -->
+  <div id="default-image">
+    <img src="indexImage.jpg" alt="Introductory image" />
+  </div>
   <main>
     <section id="about" class="content-section">
       <h2>About</h2>
@@ -34,33 +38,31 @@
     </section>
     <section id="contact" class="content-section">
       <h2>Contact</h2>
-      <p>Email: diegoaperaltag@gmail.com</p>
+      <p>Email: diegoaperaltag@gmail.com.</p>
     </section>
   </main>
   <script>
     document.addEventListener('DOMContentLoaded', function() {
-      // Function to hide all sections
+      var sections = document.querySelectorAll('.content-section');
+      var defaultImage = document.getElementById('default-image');
       function hideAll() {
-        document.querySelectorAll('.content-section').forEach(function(sec) {
-          sec.style.display = 'none';
-        });
+        sections.forEach(function(sec) { sec.style.display = 'none'; });
+        defaultImage.style.display = 'block';
       }
-
-      // Initially hide all sections
+      // Initialize default view
       hideAll();
-
-      // Nav link handlers
+      // Section link clicks
       document.querySelectorAll('.nav-links a').forEach(function(link) {
         link.addEventListener('click', function(e) {
           e.preventDefault();
-          hideAll();
           var id = this.getAttribute('data-section');
+          sections.forEach(function(sec) { sec.style.display = 'none'; });
           document.getElementById(id).style.display = 'block';
-          document.getElementById(id).scrollIntoView({behavior: 'smooth'});
+          defaultImage.style.display = 'none';
+          document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
         });
       });
-
-      // Home link handler: hide all sections
+      // Home link click
       document.getElementById('home-link').addEventListener('click', function(e) {
         e.preventDefault();
         hideAll();
