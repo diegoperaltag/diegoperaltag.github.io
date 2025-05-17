@@ -93,5 +93,6 @@ main {
 .content-section {
     display: none;
     margin-bottom: 40px;
+    margin: 10px auto;
     text-align: left;
 }
