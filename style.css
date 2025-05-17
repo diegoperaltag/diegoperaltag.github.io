@@ -9,7 +9,7 @@ body {
     font-family: 'Times New Roman', serif;
     background-color: white;
     color: black;
-    text-align: center; /* centers header elements only */
+    text-align: center; /* only centers header block */
 }
 
 /* Header layout */
@@ -24,6 +24,7 @@ header {
 .site-title {
     font-size: 24px;
     font-weight: normal;
+    display: inline-block; /* to allow link styling */
 }
 
 .subtitle {
@@ -32,7 +33,21 @@ header {
     margin-bottom: 10px;
 }
 
-/* Divider */
+/* Remove default link styling from your name */
+#home-link {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Ensure no underline or color change on hover/visited */
+#home-link:hover,
+#home-link:active,
+#home-link:visited {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Divider line */
 hr {
     border: none;
     border-top: 1px solid black;
@@ -40,7 +55,7 @@ hr {
     width: 80%;
 }
 
-/* Navigation */
+/* Navigation links */
 .main-nav {
     margin-top: 10px;
 }
@@ -64,20 +79,10 @@ hr {
 main {
     max-width: 800px;
     margin: 20px auto;
-    text-align: left; /* left-aligns section text */
+    text-align: left; /* section text flush left */
 }
 
 .content-section {
-    display: none; /* hide all by default */
+    display: none; /* hidden until link click */
     margin-bottom: 40px;
-    text-align: left;
-}
-
-/* Remove underline and blue color from the name link */
-#home-link,
-#home-link:visited,
-#home-link:hover,
-#home-link:active {
-  text-decoration: none;
-  color: inherit;  /* will inherit your black header text color */
 }
