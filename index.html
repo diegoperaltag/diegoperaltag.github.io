@@ -419,29 +419,29 @@
     document.addEventListener('DOMContentLoaded', function() {
         var sections = document.querySelectorAll('.content-section');
         var defaultImage = document.getElementById('default-image');
+        var currentSection = null;
       
-        // Pause any playing YouTube or SoundCloud iframe
-        function stopAllVideos() {
-          sections.forEach(function(sec) {
+        function hideAll() {
+          // Pause videos only in the section we’re leaving
+          if (currentSection) {
+            var sec = document.getElementById(currentSection);
             sec.querySelectorAll('iframe').forEach(function(iframe) {
               var src = iframe.src;
               if (src.includes('youtube.com')) {
+                // pause YouTube
                 iframe.contentWindow.postMessage(
                   JSON.stringify({ event: 'command', func: 'pauseVideo', args: [] }),
                   '*'
                 );
-              } else if (src.includes('soundcloud.com')) {
+              } else if (src.includes('soundcloud.com') && window.SC) {
+                // pause SoundCloud
                 SC.Widget(iframe).pause();
               }
             });
-          });
-        }
-      
-        function hideAll() {
-          stopAllVideos();
+          }
+          // hide everything
           sections.forEach(function(sec) { sec.style.display = 'none'; });
           defaultImage.style.display = 'block';
-          // **Do not clear the hash here** so back button & direct links still work
         }
       
         function showSection(id) {
@@ -451,9 +451,10 @@
           sec.style.display = 'block';
           defaultImage.style.display = 'none';
           window.location.hash = id;
+          currentSection = id;
         }
       
-        // On load, open section from hash or show default
+        // On load, show section from hash or default
         var initial = location.hash.slice(1);
         if (initial && document.getElementById(initial)) {
           showSection(initial);
@@ -461,29 +462,28 @@
           hideAll();
         }
       
-        // Click handlers for nav and piece links
-        document.querySelectorAll('.nav-links a, .music-list-links a').forEach(function(link) {
-          link.addEventListener('click', function(e) {
-            e.preventDefault();
-            showSection(this.getAttribute('data-section'));
+        // Nav & music-list links
+        document.querySelectorAll('.nav-links a, .music-list-links a')
+          .forEach(function(link) {
+            link.addEventListener('click', function(e) {
+              e.preventDefault();
+              showSection(this.getAttribute('data-section'));
+            });
           });
-        });
       
-        // Home link: hide all and clear hash
+        // Home link
         document.getElementById('home-link').addEventListener('click', function(e) {
           e.preventDefault();
           hideAll();
+          currentSection = null;
           history.replaceState('', document.title, window.location.pathname);
         });
       
-        // Back/forward handling
+        // Back/forward support
         window.addEventListener('hashchange', function() {
           var id = location.hash.slice(1);
-          if (id && document.getElementById(id)) {
-            showSection(id);
-          } else {
-            hideAll();
-          }
+          if (id && document.getElementById(id)) showSection(id);
+          else hideAll();
         });
       });
     </script>    
