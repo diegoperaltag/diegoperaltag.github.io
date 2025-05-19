@@ -6,7 +6,7 @@ html, body, h1, h2, p, ul {
 
 /* Base styling */
 body {
-    font-family: 'Times New Roman', serif;
+    font-family: Verdana, 'Geneva', sans-serif;
     background-color: white;
     color: black;
     text-align: center; /* only centers header block */
