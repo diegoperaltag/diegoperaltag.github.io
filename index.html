@@ -422,26 +422,26 @@
       
         // Pause any playing YouTube or SoundCloud iframe
         function stopAllVideos() {
-          document.querySelectorAll('iframe').forEach(function(iframe) {
-            var src = iframe.src;
-            if (src.includes('youtube.com')) {
-              // send pause command to YouTube player
-              iframe.contentWindow.postMessage(
-                JSON.stringify({ event: 'command', func: 'pauseVideo', args: [] }),
-                '*'
-              );
-            } else if (src.includes('soundcloud.com')) {
-              // pause SoundCloud widget
-              SC.Widget(iframe).pause();
-            }
+          sections.forEach(function(sec) {
+            sec.querySelectorAll('iframe').forEach(function(iframe) {
+              var src = iframe.src;
+              if (src.includes('youtube.com')) {
+                iframe.contentWindow.postMessage(
+                  JSON.stringify({ event: 'command', func: 'pauseVideo', args: [] }),
+                  '*'
+                );
+              } else if (src.includes('soundcloud.com')) {
+                SC.Widget(iframe).pause();
+              }
+            });
           });
         }
       
         function hideAll() {
-          stopAllVideos();  
+          stopAllVideos();
           sections.forEach(function(sec) { sec.style.display = 'none'; });
           defaultImage.style.display = 'block';
-          history.replaceState('', document.title, window.location.pathname);
+          // **Do not clear the hash here** so back button & direct links still work
         }
       
         function showSection(id) {
@@ -453,7 +453,7 @@
           window.location.hash = id;
         }
       
-        // on load, open the section if there's a hash
+        // On load, open section from hash or show default
         var initial = location.hash.slice(1);
         if (initial && document.getElementById(initial)) {
           showSection(initial);
@@ -461,22 +461,22 @@
           hideAll();
         }
       
-        // nav & music list links
-        document.querySelectorAll('.nav-links a, .music-list-links a')
-          .forEach(function(link) {
-            link.addEventListener('click', function(e) {
-              e.preventDefault();
-              showSection(this.getAttribute('data-section'));
-            });
+        // Click handlers for nav and piece links
+        document.querySelectorAll('.nav-links a, .music-list-links a').forEach(function(link) {
+          link.addEventListener('click', function(e) {
+            e.preventDefault();
+            showSection(this.getAttribute('data-section'));
           });
+        });
       
-        // home link
+        // Home link: hide all and clear hash
         document.getElementById('home-link').addEventListener('click', function(e) {
           e.preventDefault();
           hideAll();
+          history.replaceState('', document.title, window.location.pathname);
         });
       
-        // back/forward browser buttons
+        // Back/forward handling
         window.addEventListener('hashchange', function() {
           var id = location.hash.slice(1);
           if (id && document.getElementById(id)) {
