@@ -93,7 +93,8 @@ hr {
 .content-section iframe {
     max-width: 90%;   /* bump up from 80% to 90% (or 100% for full width) */
     width: 100%;
-    height: 100%;     /* keep the aspect ratio */
+    aspect-ratio: 16 / 9; /* maintain a 16:9 aspect ratio */
+    height: auto;     /* keep the aspect ratio */
     display: block;
     margin: 20px auto;
 }
