@@ -423,22 +423,43 @@
         sections.forEach(function(sec) { sec.style.display = 'none'; });
         defaultImage.style.display = 'block';
       }
-      hideAll();
-      document.querySelectorAll('.nav-links a, .music-list-links a').forEach(function(link) {
-        link.addEventListener('click', function(e) {
-          e.preventDefault();
-          var target = this.getAttribute('data-section');
-          sections.forEach(function(sec) { sec.style.display = 'none'; });
-          document.getElementById(target).style.display = 'block';
-          defaultImage.style.display = 'none';
-          document.getElementById(target).scrollIntoView({ behavior: 'smooth' });
-        });
-      });
-      document.getElementById('home-link').addEventListener('click', function(e) {
-        e.preventDefault();
+      function showSection(id) {
         hideAll();
-      });
+        document.getElementById(id).style.display = 'block';
+        defaultImage.style.display = 'none';
+        // ← push the new hash here:
+        window.location.hash = id;
+      }
+      hideAll();
+      document.querySelectorAll('.nav-links a, .music-list-links a')
+      .forEach(link => link.addEventListener('click', e => {
+        e.preventDefault();
+        const id = link.getAttribute('data-section');
+        showSection(id);
+      })
+    );
+
+    // home link
+    document.getElementById('home-link').addEventListener('click', e => {
+      e.preventDefault();
+      hideAll();
+      // clear the hash when you go home:
+      history.replaceState('', document.title, window.location.pathname);
     });
+
+    // **NEW**: on load, open the hash if there is one
+    window.addEventListener('load', () => {
+      const id = location.hash.slice(1);
+      if (id) showSection(id);
+    });
+
+    // **NEW**: back/forward buttons
+    window.addEventListener('hashchange', () => {
+      const id = location.hash.slice(1);
+      if (id) showSection(id);
+      else hideAll();
+    });
+  });
   </script>
 </body>
 </html>
