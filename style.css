@@ -102,3 +102,7 @@ main {
     margin-bottom: 40px;
     text-align: left;
 }
+
+.content-section p {
+    margin-bottom: 1em;   /* or 1.5em, 2em, whatever feels right */
+  }
