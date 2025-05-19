@@ -419,21 +419,22 @@
     document.addEventListener('DOMContentLoaded', function() {
         var sections = document.querySelectorAll('.content-section');
         var defaultImage = document.getElementById('default-image');
+        var currentSection = null;
       
-        function stopAllVideos() {
-          sections.forEach(function(sec) {
-            sec.querySelectorAll('iframe').forEach(function(iframe) {
+        function hideAll() {
+          // Stop videos only in the currently visible section
+          if (currentSection) {
+            document.querySelectorAll('#' + currentSection + ' iframe').forEach(function(iframe) {
               var src = iframe.src;
               iframe.src = '';
               iframe.src = src;
             });
-          });
-        }
-      
-        function hideAll() {
-          stopAllVideos();
+          }
+          // Hide everything
           sections.forEach(function(sec) { sec.style.display = 'none'; });
           defaultImage.style.display = 'block';
+          currentSection = null;
+          // Clear URL hash
           history.replaceState('', document.title, window.location.pathname);
         }
       
@@ -445,14 +446,18 @@
           defaultImage.style.display = 'none';
           sec.scrollIntoView({ behavior: 'smooth' });
           window.location.hash = id;
+          currentSection = id;
         }
       
-        // On load, open section from hash or default
+        // On load, open hash if present
         var initial = location.hash.slice(1);
-        if (initial) showSection(initial);
-        else hideAll();
+        if (initial && document.getElementById(initial)) {
+          showSection(initial);
+        } else {
+          hideAll();
+        }
       
-        // Nav & piece-link clicks
+        // Handle nav and music-list links
         document.querySelectorAll('.nav-links a, .music-list-links a').forEach(function(link) {
           link.addEventListener('click', function(e) {
             e.preventDefault();
@@ -460,16 +465,16 @@
           });
         });
       
-        // Home (name) link
+        // Home link (site title)
         document.getElementById('home-link').addEventListener('click', function(e) {
           e.preventDefault();
           hideAll();
         });
       
-        // Back/Forward support
+        // Back/forward support
         window.addEventListener('hashchange', function() {
           var id = location.hash.slice(1);
-          if (id) showSection(id);
+          if (id && document.getElementById(id)) showSection(id);
           else hideAll();
         });
       });
