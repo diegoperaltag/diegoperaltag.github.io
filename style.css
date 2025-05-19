@@ -105,4 +105,19 @@ main {
 
 .content-section p {
     margin-bottom: 1em;   /* or 1.5em, 2em, whatever feels right */
-  }
+}
+
+/* Acoustic works list links */
+.music-list-links {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
+}
+.music-list-links li {
+    margin: 10px 0;
+}
+.music-list-links li a {
+    text-decoration: none;
+    color: black;
+    font-size: 18px;
+}
