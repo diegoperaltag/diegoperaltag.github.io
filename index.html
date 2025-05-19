@@ -417,67 +417,49 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', function() {
-        var sections = document.querySelectorAll('.content-section');
-        var defaultImage = document.getElementById('default-image');
-        var currentSection = null;
-      
-        function hideAll() {
-          // Stop videos only in the currently visible section
-          if (currentSection) {
-            document.querySelectorAll('#' + currentSection + ' iframe').forEach(function(iframe) {
-              var src = iframe.src;
-              iframe.src = '';
-              iframe.src = src;
-            });
-          }
-          // Hide everything
-          sections.forEach(function(sec) { sec.style.display = 'none'; });
-          defaultImage.style.display = 'block';
-          currentSection = null;
-          // Clear URL hash
-          history.replaceState('', document.title, window.location.pathname);
-        }
-      
-        function showSection(id) {
-          hideAll();
-          var sec = document.getElementById(id);
-          if (!sec) return;
-          sec.style.display = 'block';
-          defaultImage.style.display = 'none';
-          sec.scrollIntoView({ behavior: 'smooth' });
-          window.location.hash = id;
-          currentSection = id;
-        }
-      
-        // On load, open hash if present
-        var initial = location.hash.slice(1);
-        if (initial && document.getElementById(initial)) {
-          showSection(initial);
-        } else {
-          hideAll();
-        }
-      
-        // Handle nav and music-list links
-        document.querySelectorAll('.nav-links a, .music-list-links a').forEach(function(link) {
-          link.addEventListener('click', function(e) {
-            e.preventDefault();
-            showSection(this.getAttribute('data-section'));
-          });
-        });
-      
-        // Home link (site title)
-        document.getElementById('home-link').addEventListener('click', function(e) {
-          e.preventDefault();
-          hideAll();
-        });
-      
-        // Back/forward support
-        window.addEventListener('hashchange', function() {
-          var id = location.hash.slice(1);
-          if (id && document.getElementById(id)) showSection(id);
-          else hideAll();
-        });
-      });
+      var sections = document.querySelectorAll('.content-section');
+      var defaultImage = document.getElementById('default-image');
+      function hideAll() {
+        sections.forEach(function(sec) { sec.style.display = 'none'; });
+        defaultImage.style.display = 'block';
+      }
+      function showSection(id) {
+        hideAll();
+        document.getElementById(id).style.display = 'block';
+        defaultImage.style.display = 'none';
+        // ← push the new hash here:
+        window.location.hash = id;
+      }
+      hideAll();
+      document.querySelectorAll('.nav-links a, .music-list-links a')
+      .forEach(link => link.addEventListener('click', e => {
+        e.preventDefault();
+        const id = link.getAttribute('data-section');
+        showSection(id);
+      })
+    );
+
+    // home link
+    document.getElementById('home-link').addEventListener('click', e => {
+      e.preventDefault();
+      hideAll();
+      // clear the hash when you go home:
+      history.replaceState('', document.title, window.location.pathname);
+    });
+
+    // **NEW**: on load, open the hash if there is one
+    window.addEventListener('load', () => {
+      const id = location.hash.slice(1);
+      if (id) showSection(id);
+    });
+
+    // **NEW**: back/forward buttons
+    window.addEventListener('hashchange', () => {
+      const id = location.hash.slice(1);
+      if (id) showSection(id);
+      else hideAll();
+    });
+  });
   </script>
 </body>
 </html>
