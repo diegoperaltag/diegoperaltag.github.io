@@ -1043,83 +1043,103 @@
   </main>
 
   <script>
-        // Dynamically load SoundCloud Widget API if it’s not already present
-     if (typeof SC === 'undefined' || !SC.Widget) {
-       var scApi = document.createElement('script');
-       scApi.src = 'https://w.soundcloud.com/player/api.js';
-       document.head.appendChild(scApi);
-     }
+      // Dynamically load SoundCloud Widget API if it’s not already present
+  if (typeof SC === 'undefined' || !SC.Widget) {
+    var scApi = document.createElement('script');
+    scApi.src = 'https://w.soundcloud.com/player/api.js';
+    document.head.appendChild(scApi);
+  }
 
-    document.addEventListener('DOMContentLoaded', function() {
-        var sections = document.querySelectorAll('.content-section');
-        var defaultImage = document.getElementById('default-image');
-        var currentSection = null;
-      
-        function hideAll() {
-          // Pause videos only in the section we’re leaving
-          if (currentSection) {
-            var sec = document.getElementById(currentSection);
-            sec.querySelectorAll('iframe').forEach(function(iframe) {
-              var src = iframe.src;
-              if (src.includes('youtube.com')) {
-                // pause YouTube
-                iframe.contentWindow.postMessage(
-                  JSON.stringify({ event: 'command', func: 'pauseVideo', args: [] }),
-                  '*'
-                );
-              } else if (src.includes('soundcloud.com') && window.SC && SC.Widget) {
-                // pause SoundCloud
-                SC.Widget(iframe).pause();
-              }
-            });
-          }
-          // hide everything
-          sections.forEach(function(sec) { sec.style.display = 'none'; });
-          defaultImage.style.display = 'block';
-        }
-      
-        function showSection(id) {
-          hideAll();
-          var sec = document.getElementById(id);
-          if (!sec) return;
-          sec.style.display = 'block';
-          defaultImage.style.display = 'none';
-          window.location.hash = id;
-          currentSection = id;
-        }
-      
-        // On load, show section from hash or default
-        var initial = location.hash.slice(1);
-        if (initial && document.getElementById(initial)) {
-          showSection(initial);
-        } else {
-          hideAll();
-        }
-      
-        // Nav & music-list links
-        document.querySelectorAll('.nav-links a, .music-list-links a')
-          .forEach(function(link) {
-            link.addEventListener('click', function(e) {
-              e.preventDefault();
-              showSection(this.getAttribute('data-section'));
-            });
-          });
-      
-        // Home link
-        document.getElementById('home-link').addEventListener('click', function(e) {
-          e.preventDefault();
-          hideAll();
-          currentSection = null;
-          history.replaceState('', document.title, window.location.pathname);
-        });
-      
-        // Back/forward support
-        window.addEventListener('hashchange', function() {
-          var id = location.hash.slice(1);
-          if (id && document.getElementById(id)) showSection(id);
-          else hideAll();
+  document.addEventListener('DOMContentLoaded', function() {
+    var sections = document.querySelectorAll('.content-section');
+    var defaultImage = document.getElementById('default-image');
+    var currentSection = null;
+    var isMobile = window.matchMedia('(max-width: 600px)').matches;
+
+    // On mobile, cache original iframe src in data-src and unload them
+    if (isMobile) {
+      sections.forEach(function(sec) {
+        sec.querySelectorAll('iframe').forEach(function(iframe) {
+          iframe.dataset.src = iframe.src;
+          iframe.removeAttribute('src');
         });
       });
-    </script>    
+    }
+
+    function hideAll() {
+      // Pause & unload media in the section we’re leaving
+      if (currentSection) {
+        var sec = document.getElementById(currentSection);
+        sec.querySelectorAll('iframe').forEach(function(iframe) {
+          var src = iframe.src;
+          if (src.includes('youtube.com')) {
+            iframe.contentWindow.postMessage(
+              JSON.stringify({ event: 'command', func: 'pauseVideo', args: [] }),
+              '*'
+            );
+          } else if (src.includes('soundcloud.com') && window.SC && SC.Widget) {
+            SC.Widget(iframe).pause();
+          }
+          if (isMobile) {
+            iframe.removeAttribute('src');
+          }
+        });
+      }
+      // Hide all sections
+      sections.forEach(function(sec) { sec.style.display = 'none'; });
+      defaultImage.style.display = 'block';
+    }
+
+    function showSection(id) {
+      hideAll();
+      var sec = document.getElementById(id);
+      if (!sec) return;
+      sec.style.display = 'block';
+      defaultImage.style.display = 'none';
+      // On mobile, reload only this section’s iframes
+      if (isMobile) {
+        sec.querySelectorAll('iframe').forEach(function(iframe) {
+          if (!iframe.src && iframe.dataset.src) {
+            iframe.src = iframe.dataset.src;
+          }
+        });
+      }
+      window.location.hash = id;
+      currentSection = id;
+    }
+
+    // On load, show section from hash or default
+    var initial = location.hash.slice(1);
+    if (initial && document.getElementById(initial)) {
+      showSection(initial);
+    } else {
+      hideAll();
+    }
+
+    // Nav & music-list links
+    document.querySelectorAll('.nav-links a, .music-list-links a')
+      .forEach(function(link) {
+        link.addEventListener('click', function(e) {
+          e.preventDefault();
+          showSection(this.getAttribute('data-section'));
+        });
+      });
+
+    // Home link
+    document.getElementById('home-link').addEventListener('click', function(e) {
+      e.preventDefault();
+      hideAll();
+      currentSection = null;
+      history.replaceState('', document.title, window.location.pathname);
+    });
+
+    // Back/forward support
+    window.addEventListener('hashchange', function() {
+      var id = location.hash.slice(1);
+      if (id && document.getElementById(id)) showSection(id);
+      else hideAll();
+    });
+  });
+  </script>    
 </body>
 </html>
