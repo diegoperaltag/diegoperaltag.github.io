@@ -48,7 +48,7 @@
       <h2>Works</h2>
 
       <!-- Intermedia Projects -->
-      <h3>Intermedia Projects</h3>
+      <h3>Intermedia</h3>
       <ul class="music-list-links">
         <li><a href="#" data-section="we-laid-down"><i>...we laid down our few bones without a single light to cleanse the sewers</i> for amplified ensemble, third-order Ambisonics fixed media, and archival video (2025)</a></li>
         <li><a href="#" data-section="the-cursed-seed"><i>La semilla maldita</i> for fixed media and archival footage (2024)</a></li>
@@ -1055,16 +1055,6 @@
     var defaultImage = document.getElementById('default-image');
     var currentSection = null;
     var isMobile = window.matchMedia('(max-width: 600px)').matches;
-
-    // On mobile, cache original iframe src in data-src and unload them
-    if (isMobile) {
-      sections.forEach(function(sec) {
-        sec.querySelectorAll('iframe').forEach(function(iframe) {
-          iframe.dataset.src = iframe.src;
-          iframe.removeAttribute('src');
-        });
-      });
-    }
 
     function hideAll() {
       // Pause & unload media in the section we’re leaving
