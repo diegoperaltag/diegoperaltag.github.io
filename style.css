@@ -155,46 +155,4 @@ main {
     font-size: 14px;
 }
 
-/* MOBILE OPTIMIZATIONS */
-@media (max-width: 600px) {
-  /* make the container full-width with padding */
-  main, 
-  #default-image, 
-  .video-wrapper {
-    width: 100%;
-    padding: 0 12px;
-  }
-
-  /* shrink header text a bit and add side padding */
-  header {
-    padding: 16px 12px;
-  }
-  .site-title {
-    font-size: 20px;
-  }
-  .subtitle {
-    font-size: 14px;
-  }
-
-  /* stack nav links vertically */
-  .nav-links {
-    flex-direction: column;
-    gap: 12px;
-  }
-  .nav-links li a {
-    font-size: 16px;
-  }
-
-  /* tighten up section margins */
-  .content-section {
-    margin: 20px 0;
-  }
-
-  /* ensure embedded media spans the padded width */
-  .video-wrapper {
-    width: 100%;
-    padding-top: 56.25%;
-    margin: 20px auto 40px;
-  }
-}
 
