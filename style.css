@@ -6,7 +6,7 @@ html, body, h1, h2, p, ul {
 
 /* Base styling */
 body {
-    font-family: Verdana, 'Geneva', sans-serif;
+    font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
     background-color: white;
     color: black;
     text-align: center; /* only centers header block */
@@ -152,7 +152,13 @@ main {
 .music-list-links li a {
     text-decoration: none;
     color: black;
-    font-size: 14px;
+    font-size: 18px;
 }
 
+.site-footer {
+  text-align: right;
+  margin: 40px 0 20px;
+  font-size: 0.7em;
+  color: #000000;
+}
 
