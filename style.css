@@ -162,3 +162,22 @@ main {
   color: #000000;
 }
 
+/* Mobile nav: wrap (or stack) the links so they never get clipped */
+@media (max-width: 600px) {
+  .nav-links {
+    display: flex;
+    flex-wrap: wrap;           /* allow them to flow onto a 2nd line */
+    justify-content: center;   /* keep them centered */
+    gap: 12px;                 /* tighten up the gaps a bit */
+  }
+
+  .nav-links li {
+    flex: 1 1 45%;             /* each link can take up to ~half the row */
+    text-align: center;
+  }
+
+  .nav-links li a {
+    font-size: 16px;           /* shrink the text slightly */
+  }
+}
+
