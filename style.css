@@ -6,7 +6,7 @@ html, body, h1, h2, p, ul {
 
 /* Base styling */
 body {
-    font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+    font-family: 'EB Garamond', serif;
     background-color: white;
     color: black;
     text-align: center; /* only centers header block */
@@ -152,7 +152,7 @@ main {
 .music-list-links li a {
     text-decoration: none;
     color: black;
-    font-size: 18px;
+    font-size: 17px;
 }
 
 .site-footer {
@@ -162,22 +162,76 @@ main {
   color: #000000;
 }
 
-/* Mobile nav: wrap (or stack) the links so they never get clipped */
 @media (max-width: 600px) {
   .nav-links {
-    display: flex;
-    flex-wrap: wrap;           /* allow them to flow onto a 2nd line */
-    justify-content: center;   /* keep them centered */
-    gap: 12px;                 /* tighten up the gaps a bit */
+    flex-direction: column;
+    gap: 8px;
   }
-
-  .nav-links li {
-    flex: 1 1 45%;             /* each link can take up to ~half the row */
-    text-align: center;
-  }
-
   .nav-links li a {
-    font-size: 16px;           /* shrink the text slightly */
+    font-size: 10px;
+  }
+}
+
+@media (max-width: 600px) {
+  /* Base text smaller */
+  body {
+    font-size: 14px;
+  }
+
+  /* Headings a bit smaller */
+  h1.site-title {
+    font-size: 20px;
+  }
+  .subtitle {
+    font-size: 12px;
+  }
+  h2 {
+    font-size: 18px;
+  }
+  h3 {
+    font-size: 14px;
+  }
+
+  /* Nav links smaller and tighter */
+  .nav-links li a {
+    font-size: 12px;
+  }
+
+  /* Section paragraph text */
+  .content-section p {
+    font-size: 12px;
+  }
+
+  /* Footer note */
+  .site-footer p {
+    font-size: 0.75em;
+  }
+
+  body {
+    padding: 0 16px;    /* 16px space on left & right */
+  }
+
+  /* override the main container’s auto-margins */
+  main {
+    margin: 20px 0;     /* top/bottom stays, left/right removed */
+    padding: 0;         /* no extra padding inside main */
+  }
+
+  /* similarly for header and footer */
+  header,
+  .site-footer {
+    padding: 0 16px;
+  }
+}
+
+@media (max-width: 600px) {
+  /* make the piece titles smaller on phones */
+  .music-list-links li a {
+    font-size: 12px;
+  }
+  /* tighten up the spacing a bit, too */
+  .music-list-links li {
+    margin: 5px 0;
   }
 }
 
