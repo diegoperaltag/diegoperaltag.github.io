@@ -68,7 +68,7 @@ hr {
 .nav-links li a {
     text-decoration: none;
     color: black;
-    font-size: 19px;
+    font-size: 16px;
     font-weight: normal;
     cursor: pointer;
 }
@@ -169,7 +169,7 @@ main {
 .site-footer {
   text-align: right;
   margin: 40px 0 20px;
-  font-size: 0.7em;
+  font-size: 0.8em;
   color: #000000;
 }
 
