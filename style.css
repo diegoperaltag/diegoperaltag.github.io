@@ -235,7 +235,6 @@ main {
   }
 
   /* similarly for header and footer */
-  header,
   .site-footer {
     padding: 0 16px;
   }
@@ -247,5 +246,9 @@ main {
   /* tighten up the spacing a bit, too */
   .music-list-links li {
     margin: 5px 0;
+  }
+
+  header {
+  padding: 20px 16px 10px; /* top 20px, left/right 16px, bottom 10px */
   }
 }
