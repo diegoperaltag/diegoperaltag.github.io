@@ -174,19 +174,17 @@ main {
 }
 
 @media (max-width: 600px) {
+  /* Base text smaller */
+  body {
+    font-size: 14px;
+  }
+
   .nav-links {
     flex-direction: column;
     gap: 8px;
   }
   .nav-links li a {
     font-size: 10px;
-  }
-}
-
-@media (max-width: 600px) {
-  /* Base text smaller */
-  body {
-    font-size: 14px;
   }
 
   /* Headings a bit smaller */
@@ -241,9 +239,7 @@ main {
   .site-footer {
     padding: 0 16px;
   }
-}
 
-@media (max-width: 600px) {
   /* make the piece titles smaller on phones */
   .music-list-links li a {
     font-size: 12px;
@@ -253,4 +249,3 @@ main {
     margin: 5px 0;
   }
 }
-
