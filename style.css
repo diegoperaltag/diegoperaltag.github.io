@@ -6,7 +6,7 @@ html, body, h1, h2, p, ul {
 
 /* Base styling */
 body {
-    font-family: 'EB Garamond', serif;
+    font-family: 'Source Code Pro', monospace;
     background-color: white;
     color: black;
     text-align: center; /* only centers header block */
@@ -22,13 +22,13 @@ header {
 }
 
 .site-title {
-    font-size: 24px;
+    font-size: 26px;
     font-weight: normal;
     display: inline-block; /* allows link styling */
 }
 
 .subtitle {
-    font-size: 16px;
+    font-size: 19px;
     margin-top: 5px;
     margin-bottom: 10px;
 }
@@ -68,7 +68,7 @@ hr {
 .nav-links li a {
     text-decoration: none;
     color: black;
-    font-size: 18px;
+    font-size: 19px;
     font-weight: normal;
     cursor: pointer;
 }
@@ -137,7 +137,18 @@ main {
 }
 
 .content-section p {
+    font-size: 17px;    /* ← increase or decrease as you like */
+    line-height: 1.0;   /* nice even spacing */
     margin-bottom: 1em;   /* or 1.5em, 2em, whatever feels right */
+}
+
+.content-section blockquote {
+    font-size: 17px;
+}
+
+.content-section ul li {
+    font-size: 17px;
+    margin-bottom: 0.1em; /* space between list items */
 }
 
 /* Acoustic works list links */
@@ -199,6 +210,14 @@ main {
 
   /* Section paragraph text */
   .content-section p {
+    font-size: 12px;
+  }
+
+  .content-section ul li {
+    font-size: 12px;
+  }
+
+  .content-section blockquote {
     font-size: 12px;
   }
 
