@@ -83,7 +83,7 @@ hr {
 
 /* About-section image (matches divider margins) */
 .about-image {
-    max-width: 80%;
+    max-width: 60%;
     height: auto;
     display: block;
     margin: 20px auto;
