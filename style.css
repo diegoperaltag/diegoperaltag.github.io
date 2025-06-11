@@ -131,6 +131,13 @@ hr {
     margin: 20px auto;
 }
 
+.contact-image {
+    max-width: 60%;
+    height: auto;
+    display: block;
+    margin: 20px auto;
+}
+
 /* Make embedded videos larger */
 .content-section iframe {
     max-width: 90%;   /* bump up from 80% to 90% (or 100% for full width) */
@@ -212,12 +219,17 @@ main {
   text-align: right;
   margin: 40px 0 20px;
   font-size: 0.8em;
-  color: #000000;
+  color: #ffffff;
 }
 
 a {
   color: #db11b2;
   text-decoration: none;
+}
+
+h2 {
+    color: #09e3d8;
+    text-decoration:none;
 }
 
 @media (max-width: 600px) {
