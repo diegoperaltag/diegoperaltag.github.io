@@ -22,7 +22,7 @@ header {
 }
 
 .site-title {
-    font-size: 26px;
+    font-size: 28px;
     font-weight: normal;
     display: inline-block; /* allows link styling */
 }
@@ -67,8 +67,8 @@ hr {
 
 .nav-links li a {
     text-decoration: none;
-    color: rgb(255, 255, 255);
-    font-size: 16px;
+    color: rgb(156, 146, 74);
+    font-size: clamp(12px, 4vw, 16px);
     font-weight: normal;
     cursor: pointer;
 }
@@ -83,6 +83,48 @@ hr {
 
 /* About-section image (matches divider margins) */
 .about-image {
+    max-width: 60%;
+    height: auto;
+    display: block;
+    margin: 20px auto;
+}
+
+.instrument-image {
+    max-width: 60%;
+    height: auto;
+    display: block;
+    margin: 20px auto;
+}
+
+.electronic-image {
+    max-width: 60%;
+    height: auto;
+    display: block;
+    margin: 20px auto;
+}
+
+.fixedmedia-image {
+    max-width: 60%;
+    height: auto;
+    display: block;
+    margin: 20px auto;
+}
+
+.multichannel-image {
+    max-width: 60%;
+    height: auto;
+    display: block;
+    margin: 20px auto;
+}
+
+.intermedia-image {
+    max-width: 60%;
+    height: auto;
+    display: block;
+    margin: 20px auto;
+}
+
+.livecoding-image {
     max-width: 60%;
     height: auto;
     display: block;
@@ -171,6 +213,11 @@ main {
   margin: 40px 0 20px;
   font-size: 0.8em;
   color: #000000;
+}
+
+a {
+  color: #db11b2;
+  text-decoration: none;
 }
 
 @media (max-width: 600px) {
