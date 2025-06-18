@@ -311,3 +311,40 @@ h2 {
   padding: 20px 16px 10px; /* top 20px, left/right 16px, bottom 10px */
   }
 }
+
+/* ───── Dropdown under “works” ───── */
+.nav-links .dropdown {
+  position: relative;
+}
+
+.nav-links .dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;    /* sits just below “works” */
+  left: 0;
+  background-color: #000;  /* match your navbar bg */
+  list-style: none;
+  padding: 5px 0;
+  margin: 0;
+  z-index: 10;
+  min-width: 200px;
+}
+
+.nav-links .dropdown-menu li a {
+  display: block;
+  padding: 8px 20px;
+  font-size: clamp(12px, 3vw, 16px);
+  color: rgb(156, 146, 74);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+/* show only when .open class is present */
+.nav-links .dropdown.open .dropdown-menu {
+  display: block;
+}
+
+/* hover highlight inside submenu */
+.nav-links .dropdown-menu li a:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}

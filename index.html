@@ -14,21 +14,70 @@
   rel="stylesheet"
   >
 </head>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const worksToggle = document.getElementById('works-toggle');
+
+  // Toggle dropdown open/closed, and prevent any other handlers from firing
+  worksToggle.addEventListener('click', e => {
+    e.preventDefault();
+    e.stopPropagation();
+    e.stopImmediatePropagation();
+    worksToggle.parentElement.classList.toggle('open');
+  });
+
+  // Close dropdown as soon as an item is selected
+  document.querySelectorAll('.dropdown-menu a').forEach(link => {
+    link.addEventListener('click', () => {
+      link.closest('.dropdown').classList.remove('open');
+      // your existing data-section logic will still run here
+    });
+  });
+
+  // Click anywhere else to close the dropdown
+  document.addEventListener('click', e => {
+    if (!e.target.closest('.dropdown')) {
+      document.querySelectorAll('.dropdown.open')
+              .forEach(drop => drop.classList.remove('open'));
+    }
+  });
+});
+</script>
+
+
 <body>
   <header>
     <div class="center-title">
       <a href="#" id="home-link">
         <h1 class="site-title"><span style="color:rgb(181, 138, 98)">diego peralta-gonzales</span></h1>
       </a>
-      <p class="subtitle"><span style="color:rgb(181, 138, 98)">peruvian experimental composer, sound artist and coder</span></p>
+      <p class="subtitle"><span style="color:rgb(181, 138, 98)">peruvian experimental composer, sound artist and programmer</span></p>
     </div>
     <hr>
     <nav class="main-nav">
       <ul class="nav-links">
         <li><a href="#" data-section="about">about</a></li>
-        <li><a href="#" data-section="instrumental-electroacoustic">instrumental & electroacoustic</a></li>
-        <li><a href="#" data-section="fixedmedia-multichannel">fixed media & multichannel</a></li>
-        <li><a href="#" data-section="intermedia">intermedia</a></li>
+        <li class="dropdown">
+          <a href="#" id="works-toggle">ouvre ▾</a>
+          <ul class="dropdown-menu">
+            <li>
+             <a href="#" data-section="instrumental-electroacoustic">
+             instrumental & electroacoustic
+             </a>
+            </li>
+            <li>
+             <a href="#" data-section="fixedmedia-multichannel">
+             fixed media & multichannel
+             </a>
+            </li>
+            <li>
+             <a href="#" data-section="intermedia">
+             intermedia
+            </a>
+            </li>
+          </ul>
+        </li>
         <li><a href="#" data-section="livecoding">live coding</a></li>
         <li><a href="#" data-section="contact">contact</a></li>
       </ul>
