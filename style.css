@@ -68,7 +68,7 @@ hr {
 .nav-links li a {
     text-decoration: none;
     color: rgb(156, 146, 74);
-    font-size: clamp(12px, 4vw, 16px);
+    font-size: clamp(14px, 4vw, 18px);
     font-weight: normal;
     cursor: pointer;
 }
@@ -233,13 +233,14 @@ h2 {
 }
 
 @media (max-width: 600px) {
+
   /* Base text smaller */
   body {
     font-size: 14px;
   }
 
   .nav-links {
-    flex-direction: column;
+    flex-direction: column; /* stack nav links vertically */
     gap: 8px;
   }
   .nav-links li a {
@@ -262,7 +263,7 @@ h2 {
 
   /* Nav links smaller and tighter */
   .nav-links li a {
-    font-size: 11px;
+    font-size: 13px;
   }
 
   /* Section paragraph text */
@@ -310,6 +311,22 @@ h2 {
   header {
   padding: 20px 16px 10px; /* top 20px, left/right 16px, bottom 10px */
   }
+
+  /* ── FORCE the submenu into the flow ── */
+  .nav-links .dropdown-menu {
+    position: static   !important;
+    top:      auto     !important;
+    left:     auto     !important;
+    width:    100%     !important;
+    box-shadow: none   !important;
+  }
+
+  /* Make sure the header/nav container can expand */
+  header,
+  .main-nav {
+    overflow: visible !important;
+    height:   auto    !important;
+  }
 }
 
 /* ───── Dropdown under “works” ───── */
@@ -333,7 +350,7 @@ h2 {
 .nav-links .dropdown-menu li a {
   display: block;
   padding: 8px 20px;
-  font-size: clamp(12px, 3vw, 16px);
+  font-size: clamp(10px, 2.5vw, 14px);
   color: rgb(156, 146, 74);
   text-decoration: none;
   white-space: nowrap;
@@ -348,3 +365,4 @@ h2 {
 .nav-links .dropdown-menu li a:hover {
   background-color: rgba(255, 255, 255, 0.1);
 }
+
