@@ -1488,16 +1488,6 @@ document.addEventListener('DOMContentLoaded', () => {
        }
      }
    }
-   // Enable section switching when page loads with a hash
-document.addEventListener('DOMContentLoaded', () => {
-  const hash = window.location.hash;
-  if (hash) {
-    const sectionId = hash.substring(1);
-    const menuLink = document.querySelector(`[data-section="${sectionId}"]`);
-    if (menuLink) {
-      menuLink.click(); // Triggers your section display logic
-    }
-  } 
   });      
   </script>  
 </body>
