@@ -1472,23 +1472,33 @@ document.addEventListener('DOMContentLoaded', () => {
     </script>
   
   <script>
-    window.addEventListener('load', () => {
+     window.addEventListener('load', () => {
+   const hash = window.location.hash;
+   if (hash) {
+     const id = hash.substring(1);
+     const targetLink = document.querySelector(`[data-section="${id}"]`);
+     if (targetLink) {
+       // Simulate a click on the link to trigger your existing JS logic
+       targetLink.click();
+     } else {
+       // Fallback: directly show the section if no link is mapped
+       const section = document.getElementById(id);
+       if (section) {
+         section.scrollIntoView({ behavior: 'smooth' });
+       }
+     }
+   }
+   // Enable section switching when page loads with a hash
+document.addEventListener('DOMContentLoaded', () => {
   const hash = window.location.hash;
   if (hash) {
-    const id = hash.substring(1);
-    const targetLink = document.querySelector(`[data-section="${id}"]`);
-    if (targetLink) {
-      // Simulate a click on the link to trigger your existing JS logic
-      targetLink.click();
-    } else {
-      // Fallback: directly show the section if no link is mapped
-      const section = document.getElementById(id);
-      if (section) {
-        section.scrollIntoView({ behavior: 'smooth' });
-      }
+    const sectionId = hash.substring(1);
+    const menuLink = document.querySelector(`[data-section="${sectionId}"]`);
+    if (menuLink) {
+      menuLink.click(); // Triggers your section display logic
     }
-  }
-});      
+  } 
+  });      
   </script>  
 </body>
 </html>
