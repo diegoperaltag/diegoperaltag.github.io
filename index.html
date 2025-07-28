@@ -6,49 +6,47 @@
   <title>Diego Peralta-Gonzales</title>
   <link rel="stylesheet" href="style.css">
   <link
-  href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;700&display=swap"
-  rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;700&display=swap"
+    rel="stylesheet"
   >
   <link
-  href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,700;1,400;1,700&display=swap"
-  rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+    rel="stylesheet"
   >
-</head>
 
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-  const worksToggle = document.getElementById('works-toggle');
+  <script>
+    // Dropdown toggle logic
+    document.addEventListener('DOMContentLoaded', () => {
+      const worksToggle = document.getElementById('works-toggle');
 
-  // Toggle dropdown open/closed, and prevent any other handlers from firing
-  worksToggle.addEventListener('click', e => {
-    e.preventDefault();
-    e.stopPropagation();
-    e.stopImmediatePropagation();
-    worksToggle.parentElement.classList.toggle('open');
-  });
+      // Toggle dropdown open/closed
+      worksToggle.addEventListener('click', e => {
+        e.preventDefault();
+        e.stopPropagation();
+        worksToggle.parentElement.classList.toggle('open');
+      });
 
-  // Close dropdown as soon as an item is selected
-  document.querySelectorAll('.dropdown-menu a').forEach(link => {
-    link.addEventListener('click', () => {
-      link.closest('.dropdown').classList.remove('open');
-      // your existing data-section logic will still run here
+      // Close dropdown when an item is clicked
+      document.querySelectorAll('.dropdown-menu a').forEach(link => {
+        link.addEventListener('click', () => {
+          link.closest('.dropdown').classList.remove('open');
+        });
+      });
+
+      // Click anywhere else to close any open dropdown
+      document.addEventListener('click', e => {
+        if (!e.target.closest('.dropdown')) {
+          document.querySelectorAll('.dropdown.open')
+                  .forEach(drop => drop.classList.remove('open'));
+        }
+      });
     });
-  });
-
-  // Click anywhere else to close the dropdown
-  document.addEventListener('click', e => {
-    if (!e.target.closest('.dropdown')) {
-      document.querySelectorAll('.dropdown.open')
-              .forEach(drop => drop.classList.remove('open'));
-    }
-  });
-});
-</script>
-
+  </script>
+</head>
 <body>
   <header>
     <div class="center-title">
-      <a href="#home-link" id="home-link">
+      <a href="#" id="home-link">
         <h1 class="site-title"><span style="color:rgb(181, 138, 98)">diego peralta-gonzales</span></h1>
       </a>
       <p class="subtitle"><span style="color:rgb(181, 138, 98)">peruvian composer, sound artist and programmer</span></p>
@@ -56,29 +54,29 @@ document.addEventListener('DOMContentLoaded', () => {
     <hr>
     <nav class="main-nav">
       <ul class="nav-links">
-        <li><a href="#about" data-section="about">about</a></li>
+        <li><a href="?section=about" data-section="about">about</a></li>
         <li class="dropdown">
           <a href="#" id="works-toggle">ouvre ▾</a>
           <ul class="dropdown-menu">
             <li>
-             <a href="#instrumental-electroacoustic" data-section="instrumental-electroacoustic">
-             instrumental & electroacoustic
-             </a>
+              <a href="?section=instrumental-electroacoustic" data-section="instrumental-electroacoustic">
+                instrumental & electroacoustic
+              </a>
             </li>
             <li>
-             <a href="#fixedmedia-multichannel" data-section="fixedmedia-multichannel">
-             fixed media & multichannel
-             </a>
+              <a href="?section=fixedmedia-multichannel" data-section="fixedmedia-multichannel">
+                fixed media & multichannel
+              </a>
             </li>
             <li>
-             <a href="#intermedia" data-section="intermedia">
-             intermedia
-            </a>
+              <a href="?section=intermedia" data-section="intermedia">
+                intermedia
+              </a>
             </li>
           </ul>
         </li>
-        <li><a href="#livecoding" data-section="livecoding">live coding</a></li>
-        <li><a href="#contact" data-section="contact">contact</a></li>
+        <li><a href="?section=livecoding" data-section="livecoding">live coding</a></li>
+        <li><a href="?section=contact" data-section="contact">contact</a></li>
       </ul>
     </nav>
   </header>
@@ -183,68 +181,147 @@ document.addEventListener('DOMContentLoaded', () => {
         </p>
     </section>
 
-    <!-- INSTRUMENTAL AND ELECTROACOUSTIC -->
+    <!-- INSTRUMENTAL & ELECTROACOUSTIC -->
     <section id="instrumental-electroacoustic" class="content-section">
-
-       <!-- Acoustic subsection -->
+      <!-- Instrumental Subsection -->
       <h3>instrumental</h3>
       <img src="instrumentImage.png" alt="live performance at Boston Conservatory" class="instrument-image" />
       <ul class="music-list-links">
-        <li><a href="#un-cuerpo-en-reposo-permanecera-en-reposo" data-section="un-cuerpo-en-reposo-permanecera-en-reposo"><span style="color:#09e3d8">Un cuerpo en reposo permanecerá en reposo</span> for bassoon and string quartet (2024)</a></li>
-        <li><a href="#alone-among-mirrors-fenced-in-by-reflections" data-section="alone-among-mirrors-fenced-in-by-reflections"><span style="color:#09e3d8">alone – among mirrors – fenced in by reflections</span> for orchestra (2024)</a></li>
-        <li><a href="#you-make-the-floods-seem-still" data-section="you-make-the-floods-seem-still"><span style="color:#09e3d8">you make the floods seem still</span> for clarinet, electric guitar, trombone, cello and piano (2023)</a></li>
-        <li><a href="#brooding" data-section="brooding"><span style="color:#09e3d8">brooding</span> for solo baritone (2023)</a></li>
-        <li><a href="#abstraccion-i-angustia" data-section="abstraccion-i-angustia"><span style="color:#09e3d8">Abstracción I: angustia</span> for reed quintet (2022)</a></li>
-        <li><a href="#eternity" data-section="eternity"><span style="color:#09e3d8">Eternity</span> for solo viola (2021)</a></li>
+        <li>
+          <a href="?section=un-cuerpo-en-reposo-permanecera-en-reposo" data-section="un-cuerpo-en-reposo-permanecera-en-reposo">
+            <span style="color:#09e3d8">Un cuerpo en reposo permanecerá en reposo</span> for bassoon and string quartet (2024)
+          </a>
+        </li>
+        <li>
+          <a href="?section=alone-among-mirrors-fenced-in-by-reflections" data-section="alone-among-mirrors-fenced-in-by-reflections">
+            <span style="color:#09e3d8">alone – among mirrors – fenced in by reflections</span> for orchestra (2024)
+          </a>
+        </li>
+        <li>
+          <a href="?section=you-make-the-floods-seem-still" data-section="you-make-the-floods-seem-still">
+            <span style="color:#09e3d8">you make the floods seem still</span> for clarinet, electric guitar, trombone, cello and piano (2023)
+          </a>
+        </li>
+        <li>
+          <a href="?section=brooding" data-section="brooding">
+            <span style="color:#09e3d8">brooding</span> for solo baritone (2023)
+          </a>
+        </li>
+        <li>
+          <a href="?section=abstraccion-i-angustia" data-section="abstraccion-i-angustia">
+            <span style="color:#09e3d8">Abstracción I: angustia</span> for reed quintet (2022)
+          </a>
+        </li>
+        <li>
+          <a href="?section=eternity" data-section="eternity">
+            <span style="color:#09e3d8">Eternity</span> for solo viola (2021)
+          </a>
+        </li>
       </ul>
 
-      <!-- Electroacoustic subsection -->
+      <!-- Electroacoustic Subsection -->
       <h3>electroacoustic</h3>
       <img src="electronicImage.png" alt="subterraaaaaneo premiere" class="electronic-image" />
       <ul class="music-list-links">
-        <li><a href="#hidden-layers-who-decides-when-were-entangled" data-section="hidden-layers-who-decides-when-were-entangled"><span style="color:#09e3d8">Hidden Layers: who decides when we're entangled</span> for laptop ensemble (2025)</a></li>
-        <li><a href="#subterraaaaneo" data-section="subterraaaaneo"><span style="color:#09e3d8">Subterráááááneo [Subterranean]</span> for two electric guitars (2025)</a></li>
-        <li><a href="/retama/"><span style="color:#09e3d8">Retama</span> for trombone and electronics (2025)</a></li>
-        <li><a href="#atoms-of-yours-to-make-you-appear" data-section="atoms-of-yours-to-make-you-appear"><span style="color:#09e3d8">atoms_of_yours_to_make_you_appear</span> for three performers and miniTidal (2024)</a></li>
-        <li><a href="#soliloquy" data-section="soliloquy"><span style="color:#09e3d8">soliloquy</span> for amplified piano in quadraphonic setup (2023)</a></li>
-        <li><a href="#little-flower-harawi" data-section="little-flower-harawi"><span style="color:#09e3d8">little flower (harawi)</span> for seven performers (2023)</a></li>
+        <li>
+          <a href="?section=hidden-layers-who-decides-when-were-entangled" data-section="hidden-layers-who-decides-when-were-entangled">
+            <span style="color:#09e3d8">Hidden Layers: who decides when we're entangled</span> for laptop ensemble (2025)
+          </a>
+        </li>
+        <li>
+          <a href="?section=subterraaaaneo" data-section="subterraaaaneo">
+            <span style="color:#09e3d8">Subterráááááneo [Subterranean]</span> for two electric guitars (2025)
+          </a>
+        </li>
+        <li>
+          <a href="?section=retama" data-section="retama">
+            <span style="color:#09e3d8">Retama</span> for trombone and electronics (2025)
+          </a>
+        </li>
+        <li>
+          <a href="?section=atoms-of-yours-to-make-you-appear" data-section="atoms-of-yours-to-make-you-appear">
+            <span style="color:#09e3d8">atoms_of_yours_to_make_you_appear</span> for three performers and miniTidal (2024)
+          </a>
+        </li>
+        <li>
+          <a href="?section=soliloquy" data-section="soliloquy">
+            <span style="color:#09e3d8">soliloquy</span> for amplified piano in quadraphonic setup (2023)
+          </a>
+        </li>
+        <li>
+          <a href="?section=little-flower-harawi" data-section="little-flower-harawi">
+            <span style="color:#09e3d8">little flower (harawi)</span> for seven performers (2023)
+          </a>
+        </li>
       </ul>
-
     </section>
 
-    <!-- FIXED MEDIA AND MULTICHANNEL -->
-     <section id="fixedmedia-multichannel" class="content-section">
-     <h3>fixed media</h3>
-     <img src="fixedmediaImage.png" alt="where time once stood frame" class="fixedmedia-image" /> 
-     <ul class="music-list-links">
-        <li><a href="#where-time-once-stood" data-section="where-time-once-stood"><span style="color:#09e3d8">where time once stood</span> for fixed media and video (2025)</a></li>
-        <li><a href="#he-might-be-vanishing" data-section="he-might-be-vanishing"><span style="color:#09e3d8">he might be vanishing</span> for fixed media (2025)</a></li>
-      </ul>
-      <h3>multichannel</h3>
-      <img src="multichannelImage.png" alt="lo que ya no esta jitter frame" class="multichannel-image" /> 
+    <!-- FIXED MEDIA & MULTICHANNEL -->
+    <section id="fixedmedia-multichannel" class="content-section">
+      <h3>fixed media</h3>
+      <img src="fixedmediaImage.png" alt="where time once stood frame" class="fixedmedia-image" />
       <ul class="music-list-links">
-        <li><a href="#an-empty-chair-at-the-end-of-this-world" data-section="an-empty-chair-at-the-end-of-this-world"><span style="color:#09e3d8">an empty chair at the end of this world</span> for 8-channel third-order Ambisonics fixed media (2025)</a></li>
-        <li><a href="#lo-que-ya-no-esta" data-section="lo-que-ya-no-esta"><span style="color:#09e3d8">lo que ya no está</span> for 8-channel third-order Ambisonics fixed media and audio-reactive Jitter patch (2024)</a></li>
+        <li>
+          <a href="?section=where-time-once-stood" data-section="where-time-once-stood">
+            <span style="color:#09e3d8">where time once stood</span> for fixed media and video (2025)
+          </a>
+        </li>
+        <li>
+          <a href="?section=he-might-be-vanishing" data-section="he-might-be-vanishing">
+            <span style="color:#09e3d8">he might be vanishing</span> for fixed media (2025)
+          </a>
+        </li>
       </ul>
-     </section>
-     
+
+      <h3>multichannel</h3>
+      <img src="multichannelImage.png" alt="lo que ya no esta jitter frame" class="multichannel-image" />
+      <ul class="music-list-links">
+        <li>
+          <a href="?section=an-empty-chair-at-the-end-of-this-world" data-section="an-empty-chair-at-the-end-of-this-world">
+            <span style="color:#09e3d8">an empty chair at the end of this world</span> for 8-channel third-order Ambisonics fixed media (2025)
+          </a>
+        </li>
+        <li>
+          <a href="?section=lo-que-ya-no-esta" data-section="lo-que-ya-no-esta">
+            <span style="color:#09e3d8">lo que ya no está</span> for 8-channel third-order Ambisonics fixed media and audio-reactive Jitter patch (2024)
+          </a>
+        </li>
+      </ul>
+    </section>
+
     <!-- LIVE CODING -->
     <section id="livecoding" class="content-section">
-    <h3>live coding</h3>
-    <img src="livecodingImage.png" alt="live coding performance" class="livecoding-image" />  
+      <h3>live coding</h3>
+      <img src="livecodingImage.png" alt="live coding performance" class="livecoding-image" />
       <ul class="music-list-links">
-        <li><a href="#the-world-which-has-become-objectified" data-section="the-world-which-has-become-objectified"><span style="color:#09e3d8">The world which has become objectified</span> for live coding in SuperCollider (2024)</a></li>
-        <li><a href="#i-only-have-eyes-for-you" data-section="i-only-have-eyes-for-you"><span style="color:#09e3d8">i only have eyes for you</span> for live coding in Tidal Cycles (2024)</a></li>
+        <li>
+          <a href="?section=the-world-which-has-become-objectified" data-section="the-world-which-has-become-objectified">
+            <span style="color:#09e3d8">The world which has become objectified</span> for live coding in SuperCollider (2024)
+          </a>
+        </li>
+        <li>
+          <a href="?section=i-only-have-eyes-for-you" data-section="i-only-have-eyes-for-you">
+            <span style="color:#09e3d8">i only have eyes for you</span> for live coding in Tidal Cycles (2024)
+          </a>
+        </li>
       </ul>
     </section>
 
-    <!-- Intermedia -->
+    <!-- INTERMEDIA -->
     <section id="intermedia" class="content-section">
-    <h3>intermedia</h3>
-    <img src="intermediaImage.png" alt="we laid down premiere" class="intermedia-image" />  
+      <h3>intermedia</h3>
+      <img src="intermediaImage.png" alt="we laid down premiere" class="intermedia-image" />
       <ul class="music-list-links">
-        <li><a href="#we-laid-down-our-few-bones-without-a-single-light-to-cleanse-the-sewers" data-section="we-laid-down-our-few-bones-without-a-single-light-to-cleanse-the-sewers"><span style="color:#09e3d8">...we laid down our few bones without a single light to cleanse the sewers</span> for amplified ensemble, third-order Ambisonics fixed media, and archival video (2025)</a></li>
-        <li><a href="#the-cursed-seed" data-section="the-cursed-seed"><span style="color:#09e3d8">La semilla maldita</span> for fixed media and archival footage (2024)</a></li>
+        <li>
+          <a href="?section=we-laid-down-our-few-bones-without-a-single-light-to-cleanse-the-sewers" data-section="we-laid-down-our-few-bones-without-a-single-light-to-cleanse-the-sewers">
+            <span style="color:#09e3d8">...we laid down our few bones without a single light to cleanse the sewers</span> for amplified ensemble, third-order Ambisonics fixed media, and archival video (2025)
+          </a>
+        </li>
+        <li>
+          <a href="?section=the-cursed-seed" data-section="the-cursed-seed">
+            <span style="color:#09e3d8">La semilla maldita</span> for fixed media and archival footage (2024)
+          </a>
+        </li>
       </ul>
     </section>
 
@@ -262,7 +339,7 @@ document.addEventListener('DOMContentLoaded', () => {
         >instagram</a> for updates on new works, live performances, and informal sound experiments I share along the way.</p>
     </section>
 
-    <!-- Acoustic detail sections -->
+<!-- Acoustic detail sections -->
     <!-- Un cuerpo... --> 
     <section id="un-cuerpo-en-reposo-permanecera-en-reposo" class="content-section">
       <h2>Un cuerpo en reposo permanecerá en reposo [A body at rest will remain at rest] (2024)</h2>
@@ -1388,23 +1465,26 @@ document.addEventListener('DOMContentLoaded', () => {
     <footer class="site-footer">
       <p>Last update: 7/28/2025</p>
     </footer>
-
   </main>
 
   <script>
-        // Dynamically load SoundCloud Widget API if it’s not already present
-     if (typeof SC === 'undefined' || !SC.Widget) {
-       var scApi = document.createElement('script');
-       scApi.src = 'https://w.soundcloud.com/player/api.js';
-       document.head.appendChild(scApi);
-     }
+    // Dynamically load SoundCloud Widget API if needed
+    if (typeof SC === 'undefined' || !SC.Widget) {
+      const scApi = document.createElement('script');
+      scApi.src = 'https://w.soundcloud.com/player/api.js';
+      document.head.appendChild(scApi);
+    }
 
-    document.addEventListener('DOMContentLoaded', function() {
-        var sections = document.querySelectorAll('.content-section');
-        var defaultImage = document.getElementById('default-image');
-        var currentSection = null;
-      
-        function hideAll() {
+    document.addEventListener('DOMContentLoaded', () => {
+      const sections = document.querySelectorAll('.content-section');
+      const defaultImage = document.getElementById('default-image');
+      let currentSection = null;
+
+      function hideAll() {
+        sections.forEach(sec => sec.style.display = 'none');
+      }
+
+      function hideAll() {
           // Pause videos only in the section we’re leaving
           if (currentSection) {
             var sec = document.getElementById(currentSection);
@@ -1426,69 +1506,60 @@ document.addEventListener('DOMContentLoaded', () => {
           sections.forEach(function(sec) { sec.style.display = 'none'; });
           defaultImage.style.display = 'block';
         }
-      
-        function showSection(id) {
-          hideAll();
-          var sec = document.getElementById(id);
-          if (!sec) return;
-          sec.style.display = 'block';
-          defaultImage.style.display = 'none';
-          window.location.hash = id;
-          currentSection = id;
+
+      function showDefault() {
+        hideAll();
+        defaultImage.style.display = 'block';
+        currentSection = null;
+        history.replaceState({}, '', window.location.pathname);
+      }
+
+      function showSection(id, updateUrl = true) {
+        hideAll();
+        defaultImage.style.display = 'none';
+        const sec = document.getElementById(id);
+        if (!sec) return;
+        sec.style.display = 'block';
+        currentSection = id;
+        if (updateUrl) {
+          history.pushState({ section: id }, '', '?section=' + encodeURIComponent(id));
         }
-      
-        // On load, show section from hash or default
-        var initial = location.hash.slice(1);
-        if (initial && document.getElementById(initial)) {
-          showSection(initial);
-        } else {
-          hideAll();
-        }
-      
-        // Nav & music-list links
-        document.querySelectorAll('.nav-links a, .music-list-links a')
-          .forEach(function(link) {
-            link.addEventListener('click', function(e) {
-              e.preventDefault();
-              showSection(this.getAttribute('data-section'));
-            });
-          });
-      
-        // Home link
-        document.getElementById('home-link').addEventListener('click', function(e) {
+      }
+
+      // Initial load: check ?section= or hash
+      const params = new URLSearchParams(window.location.search);
+      const initial = params.get('section') || window.location.hash.slice(1);
+      if (initial && document.getElementById(initial)) {
+        showSection(initial, false);
+      } else {
+        showDefault();
+      }
+
+      // Wire up every link with data-section
+      document.querySelectorAll('a[data-section]').forEach(link => {
+        link.addEventListener('click', e => {
           e.preventDefault();
-          hideAll();
-          currentSection = null;
-          history.replaceState('', document.title, window.location.pathname);
-        });
-      
-        // Back/forward support
-        window.addEventListener('hashchange', function() {
-          var id = location.hash.slice(1);
-          if (id && document.getElementById(id)) showSection(id);
-          else hideAll();
+          const sec = link.getAttribute('data-section');
+          showSection(sec);
         });
       });
-    </script>
-  
-  <script>
-     window.addEventListener('load', () => {
-   const hash = window.location.hash;
-   if (hash) {
-     const id = hash.substring(1);
-     const targetLink = document.querySelector(`[data-section="${id}"]`);
-     if (targetLink) {
-       // Simulate a click on the link to trigger your existing JS logic
-       targetLink.click();
-     } else {
-       // Fallback: directly show the section if no link is mapped
-       const section = document.getElementById(id);
-       if (section) {
-         section.scrollIntoView({ behavior: 'smooth' });
-       }
-     }
-   }
-  });      
-  </script>  
+
+      // Home link resets to default
+      document.getElementById('home-link').addEventListener('click', e => {
+        e.preventDefault();
+        showDefault();
+      });
+
+      // Handle back/forward
+      window.addEventListener('popstate', () => {
+        const sec = new URLSearchParams(window.location.search).get('section');
+        if (sec && document.getElementById(sec)) {
+          showSection(sec, false);
+        } else {
+          showDefault();
+        }
+      });
+    });
+  </script>
 </body>
 </html>
