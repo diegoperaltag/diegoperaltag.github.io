@@ -1468,83 +1468,87 @@
   </main>
 
   <script>
-    // Dynamically load SoundCloud Widget API if needed
+    // Load SoundCloud API if needed
     if (typeof SC === 'undefined' || !SC.Widget) {
-      const scApi = document.createElement('script');
-      scApi.src = 'https://w.soundcloud.com/player/api.js';
-      document.head.appendChild(scApi);
+      const sc = document.createElement('script');
+      sc.src = 'https://w.soundcloud.com/player/api.js';
+      document.head.appendChild(sc);
     }
 
     document.addEventListener('DOMContentLoaded', () => {
-      const sections = document.querySelectorAll('.content-section');
       const defaultImage = document.getElementById('default-image');
-      let currentSection = null;
+      let previousSection = null;
 
-      function hideAll() {
-        sections.forEach(sec => sec.style.display = 'none');
-      }
-
-      function hideAll() {
-          // Pause videos only in the section we’re leaving
-          if (currentSection) {
-            var sec = document.getElementById(currentSection);
-            sec.querySelectorAll('iframe').forEach(function(iframe) {
-              var src = iframe.src;
-              if (src.includes('youtube.com')) {
-                // pause YouTube
-                iframe.contentWindow.postMessage(
-                  JSON.stringify({ event: 'command', func: 'pauseVideo', args: [] }),
-                  '*'
-                );
-              } else if (src.includes('soundcloud.com') && window.SC && SC.Widget) {
-                // pause SoundCloud
-                SC.Widget(iframe).pause();
-              }
-            });
+      // Pause any playing media in a section
+      function pauseMedia(sectionId) {
+        const sec = document.getElementById(sectionId);
+        if (!sec) return;
+        sec.querySelectorAll('iframe').forEach(iframe => {
+          const src = iframe.src;
+          if (src.includes('youtube.com')) {
+            iframe.contentWindow.postMessage(
+              JSON.stringify({ event: 'command', func: 'pauseVideo', args: [] }),
+              '*'
+            );
+          } else if (src.includes('soundcloud.com') && window.SC && SC.Widget) {
+            SC.Widget(iframe).pause();
           }
-          // hide everything
-          sections.forEach(function(sec) { sec.style.display = 'none'; });
-          defaultImage.style.display = 'block';
-        }
-
-      function showDefault() {
-        hideAll();
-        defaultImage.style.display = 'block';
-        currentSection = null;
-        history.replaceState({}, '', window.location.pathname);
+        });
       }
 
-      function showSection(id, updateUrl = true) {
-        hideAll();
-        defaultImage.style.display = 'none';
+      // Lazy-load iframe src from data-src
+      function loadMedia(sec) {
+        sec.querySelectorAll('iframe[data-src]').forEach(iframe => {
+          iframe.src = iframe.dataset.src;
+          iframe.removeAttribute('data-src');
+        });
+      }
+
+      function showDefault(push = true) {
+        if (previousSection) {
+          pauseMedia(previousSection);
+          document.getElementById(previousSection).style.display = 'none';
+        }
+        defaultImage.style.display = 'block';
+        previousSection = null;
+        if (push) history.pushState({}, '', window.location.pathname);
+      }
+
+      function showSection(id, push = true) {
+        if (previousSection) {
+          pauseMedia(previousSection);
+          document.getElementById(previousSection).style.display = 'none';
+        } else {
+          defaultImage.style.display = 'none';
+        }
         const sec = document.getElementById(id);
         if (!sec) return;
+        loadMedia(sec);
         sec.style.display = 'block';
-        currentSection = id;
-        if (updateUrl) {
+        previousSection = id;
+        if (push) {
           history.pushState({ section: id }, '', '?section=' + encodeURIComponent(id));
         }
       }
 
-      // Initial load: check ?section= or hash
+      // Initial load
       const params = new URLSearchParams(window.location.search);
       const initial = params.get('section') || window.location.hash.slice(1);
       if (initial && document.getElementById(initial)) {
         showSection(initial, false);
       } else {
-        showDefault();
+        showDefault(false);
       }
 
-      // Wire up every link with data-section
-      document.querySelectorAll('a[data-section]').forEach(link => {
-        link.addEventListener('click', e => {
+      // Wire up navigation links
+      document.querySelectorAll('a[data-section]').forEach(a => {
+        a.addEventListener('click', e => {
           e.preventDefault();
-          const sec = link.getAttribute('data-section');
-          showSection(sec);
+          showSection(a.dataset.section);
         });
       });
 
-      // Home link resets to default
+      // Header click returns to default
       document.getElementById('home-link').addEventListener('click', e => {
         e.preventDefault();
         showDefault();
@@ -1556,7 +1560,7 @@
         if (sec && document.getElementById(sec)) {
           showSection(sec, false);
         } else {
-          showDefault();
+          showDefault(false);
         }
       });
     });
