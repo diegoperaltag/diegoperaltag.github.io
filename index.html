@@ -18,14 +18,25 @@
   <script>
     // Dropdown toggle logic
     document.addEventListener('DOMContentLoaded', () => {
-      const worksToggle = document.getElementById('works-toggle');
-
-      // Toggle dropdown open/closed
-      worksToggle.addEventListener('click', e => {
+    // 1) Attach to every dropdown toggle link
+    document.querySelectorAll('.dropdown > a').forEach(toggle => {
+      toggle.addEventListener('click', e => {
         e.preventDefault();
         e.stopPropagation();
-        worksToggle.parentElement.classList.toggle('open');
+
+        const parent = toggle.parentElement;
+        const wasOpen = parent.classList.contains('open');
+
+        // 2) Close all dropdowns
+        document.querySelectorAll('.dropdown.open')
+                .forEach(drop => drop.classList.remove('open'));
+
+        // 3) If this one wasn't open, open it
+        if (!wasOpen) {
+          parent.classList.add('open');
+        }
       });
+    });
 
       // Close dropdown when an item is clicked
       document.querySelectorAll('.dropdown-menu a').forEach(link => {
@@ -78,7 +89,26 @@
           </ul>
         </li>
         <li><a href="?section=livecoding" data-section="livecoding">live coding</a></li>
-        <li><a href="?section=software-systems" data-section="software-systems">software / systems</a></li>
+        <li class="dropdown">
+          <a href="#" id="software-systems-toggle">software / systems ▾</a>
+          <ul class="dropdown-menu">
+            <li>
+              <a href="?section=noise-generator-synth" data-section="noise-generator-synth">
+                noise generator / synth
+              </a>
+            </li>
+            <li>
+              <a href="?section=supercollider-codes" data-section="supercollider-codes">
+                supercollider codes
+              </a>
+            </li>
+            <li>
+              <a href="?section=tidal-cycles" data-section="tidal-cycles">
+                tidal cycles
+              </a>
+            </li>
+          </ul>
+        </li>
         <li><a href="?section=contact" data-section="contact">contact</a></li>
       </ul>
     </nav>
@@ -334,6 +364,47 @@
           </a>
         </li>
       </ul>
+    </section>
+
+    <!-- SOFTWARE / SYSTEMS -->
+    <section id="noise-generator-synth" class="content-section">
+      <h3>noise generator synth</h3>
+      <p>
+        <a href="https://github.com/diegoperaltag/noise-generator-synth" 
+        target="_blank" 
+        rel="noopener noreferrer">GitHub Repository
+        </a>
+      </p>
+      <p>Demo Video:</p>
+      <div class="video-wrapper">
+        <iframe
+          src="https://drive.google.com/file/d/1HQLSPLuX-S6hAK1OmS7YKDxF_gyk47Q0/preview"
+          frameborder="0"
+          allow="autoplay; encrypted-media"
+          allowfullscreen
+        >
+        </iframe>
+      </div>
+    </section>
+
+    <section id="supercollider-codes" class="content-section">
+      <h3>SuperCollider codes</h3>
+      <p>
+        <a href="https://github.com/diegoperaltag/SuperColliderCodes" 
+        target="_blank" 
+        rel="noopener noreferrer">GitHub Repository
+        </a>
+      </p>
+      <p>Code Example (11-limit Just Intonation):</p>
+      <div class="video-wrapper">
+        <iframe
+          src="https://drive.google.com/file/d/1cueaeNCzJ1BG7ecwJmR_fo9MpZg9liQc/preview"
+          frameborder="0"
+          allow="autoplay; encrypted-media"
+          allowfullscreen
+        >
+        </iframe>
+      </div>
     </section>
 
     <!-- CONTACT -->
@@ -1490,19 +1561,30 @@
       const defaultImage = document.getElementById('default-image');
       let previousSection = null;
 
-      // Pause any playing media in a section
+      // Pause any playing media in a section (YouTube, SoundCloud, **Drive**)
       function pauseMedia(sectionId) {
         const sec = document.getElementById(sectionId);
         if (!sec) return;
+
         sec.querySelectorAll('iframe').forEach(iframe => {
           const src = iframe.src;
+
           if (src.includes('youtube.com')) {
+            // existing YouTube pause
             iframe.contentWindow.postMessage(
               JSON.stringify({ event: 'command', func: 'pauseVideo', args: [] }),
               '*'
             );
-          } else if (src.includes('soundcloud.com') && window.SC && SC.Widget) {
+          } 
+          else if (src.includes('soundcloud.com') && window.SC && SC.Widget) {
+            // existing SoundCloud pause
             SC.Widget(iframe).pause();
+          } else if (src.includes('drive.google.com')) {
+            // NEW: stash and unload Drive player
+            if (!iframe.dataset.origSrc) {
+              iframe.dataset.origSrc = iframe.src;
+            }
+            iframe.src = '';
           }
         });
       }
