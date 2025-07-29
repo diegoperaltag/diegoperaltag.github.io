@@ -81,7 +81,7 @@ hr {
 .social-nav {
   display: flex;
   justify-content: flex-end;   /* push links all the way to the right */
-  font-size: 0.90em;            /* make links smaller */
+  font-size: 0.85em;            /* make links smaller */
   align-items: center;
 }
 
@@ -158,6 +158,13 @@ hr {
 
 .contact-image {
     max-width: 60%;
+    height: auto;
+    display: block;
+    margin: 20px auto;
+}
+
+.max-image {
+    max-width: 90%;
     height: auto;
     display: block;
     margin: 20px auto;
