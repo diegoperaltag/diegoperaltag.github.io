@@ -73,6 +73,31 @@ hr {
     cursor: pointer;
 }
 
+.site-header {
+  padding: 5px 20px;
+  /* you can set a background if you like, e.g.: background: #222; */
+}
+
+.social-nav {
+  display: flex;
+  justify-content: flex-end;   /* push links all the way to the right */
+  font-size: 0.90em;            /* make links smaller */
+  align-items: center;
+}
+
+.social-nav a {
+  color: #db11b2;
+  text-decoration: none;
+  line-height: 1;               /* tighten vertical spacing */
+}
+
+/* insert a “|” before every link except the first */
+.social-nav a + a:before {
+  content: "|";
+  margin: 0 8px;
+  color: #fff;
+}
+
 /* Default homepage image */
 #default-image img {
     max-width: 80%;
@@ -245,6 +270,11 @@ h2 {
   }
   .nav-links li a {
     font-size: 10px;
+  }
+
+  .social-nav {
+    font-size: 0.75em; /* smaller social links */
+    justify-content: center; /* center social links */
   }
 
   /* Headings a bit smaller */
