@@ -114,6 +114,13 @@ hr {
     margin: 20px auto;
 }
 
+.about-image2 {
+    max-width: 60%;
+    height: auto;
+    display: block;
+    margin: 20px auto;
+}
+
 .instrument-image {
     max-width: 60%;
     height: auto;
